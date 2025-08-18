@@ -6,4 +6,4 @@
 
 	- Help with productivity and workflow automation
 
-	- Work on Unix-like systems (Linux/macOS)
+	- Work on Unix-like systems
