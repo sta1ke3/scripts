@@ -2,8 +2,10 @@
 
 - These scripts are designed to:
 
-	- Speed up repetitive or manual tasks
+	- Speed up repetitive or manual tasks.
 
-	- Help with productivity and workflow automation
+	- Help with productivity and workflow automation.
 
-	- Work on Unix-like systems
+	- Work on Unix-like systems.
+	
+	- Small Script for pentesting.
