@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # HTB Academy Module Structure Fetcher for Obsidian
-# 
+#
 # Automatically creates organized Markdown files for HTB Academy modules
 # Perfect for structured note-taking in Obsidian (https://obsidian.md/)
 #
@@ -11,6 +11,28 @@
 #   Debian/Ubuntu: apt install html2text util-linux libc-bin
 #   Arch Linux:    pacman -S html2text util-linux glibc
 #   Fedora/RHEL:   dnf install html2text util-linux glibc
+#
+# Example Output Structure:
+#/opt/obsidian-vault/vault/SQL Injection Fundamentals/
+#├── 1. Introduction.md
+#├── 2. Intro to Databases.md
+#├── 3. Types of Databases.md
+#├── 4. Intro to MySQL.md
+#├── 5. SQL Statements.md
+#├── 6. Query Results.md
+#├── 7. SQL Operators.md
+#├── 8. Intro to SQL Injections.md
+#├── 9. Subverting Query Logic.md
+#├── 10. Using Comments.md
+#├── 11. Union Clause.md
+#├── 12. Union Injection.md
+#├── 13. Database Enumeration.md
+#├── 14. Reading Files.md
+#├── 15. Writing Files.md
+#├── 16. Mitigating SQL Injection.md
+#└── 17. Skills Assessment - SQL Injection Fundamentals.md
+#
+
 
 TMP_FILE_PATH=$(mktemp)
 ACTION="$1"
