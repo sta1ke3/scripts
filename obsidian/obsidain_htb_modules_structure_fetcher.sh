@@ -31,24 +31,33 @@
 #└── 17. Skills Assessment - SQL Injection Fundamentals.md
 #
 
+#------------------------------------------------ Script variables --------------------------------------------------------------------------------
 
+# DON`T TOUCH 
 TMP_FILE_PATH=$(mktemp)
 ACTION="$1"
 
-# Custom template added to every .md file (optional)
-MODULE_NAME="Web Fuzzing"
-TAG_NAME="HTB_module/Web_Fuzzing"
-HTB_PATH="Web Penetration Tester - CWES"
-
-TEMPLATE="---\nNote Type: HTB Module\nPath: $HTB_PATH \nModule Name: $MODULE_NAME\ntags:\n  - $TAG_NAME\n---\n---\n---\n"
+#------------------------------------------------ REQUIRED variables --------------------------------------------------------------------------------
 
 # REQUIRED: Configure these variables before running
-root_obs_dir="/home/kali/Desktop"  # Your Obsidian vault directory (e.g., /home/user/Obsidian/HTB)
-module_number="280"    # HTB Module URL Number (e.g., https://academy.hackthebox.com/app/module/280 -> 280)
+root_obs_dir="/home/kali/Desktop/HTB-Modules"  # Your Obsidian vault directory (e.g., /home/user/Obsidian/HTB)
+module_number=""    # HTB Module URL Number (e.g., https://academy.hackthebox.com/app/module/280 -> 280)
 session_key=""    # Value of "htb_academy_session" Cookie
+
+#------------------------------------------------ Optional variables --------------------------------------------------------------------------------
+
+# Optional: Custom template parts added to every .md file (optional)
+TEMPLATE_MODULE_NAME=""     # Like: Server-Side_Attacks
+TEMPLATE_TAG_NAME=""        # Like: Obisdian Tag Structura: HTB_module/server-side_attacks
+TEMPLATE_HTB_PATH_NAME=""   # Like: Web Penetration Tester - CWES
+## Main Template:
+TEMPLATE="---\nNote Type: HTB Module\nPath: $TEMPLATE_HTB_PATH_NAME \nModule Name: $TEMPLATE_MODULE_NAME\ntags:\n  - $TEMPLATE_TAG_NAME\n---\n---\n---\n"
 
 # Optional: Prefix for folder names (e.g., "17. " to include module number)
 header_prefix=""
+
+#----------------------------------------------------------------------------------------------------------------------------------------------------
+#----------------------------------------------------------------------------------------------------------------------------------------------------
 
 # Display help information
 if [ -z "$1" ] || [[ "$1" == "help" ]] || [[ "$1" == "--help" ]]|| [[ "$1" == "-h" ]]; then
@@ -72,7 +81,7 @@ if [[ "$status_code" != "200" ]]; then
 fi
 
 # Fetch and parse module structure
-module_name=$(curl -s https://academy.hackthebox.com/api/v2/modules/280 -H 'accept: application/json' -H 'referer: https://academy.hackthebox.com/'  -H "cookie: htb_academy_session=$session_key" | jq -r '."data"."name"' |  tr " " "_")
+module_name=$(curl -s https://academy.hackthebox.com/api/v2/modules/$module_number -H 'accept: application/json' -H 'referer: https://academy.hackthebox.com/'  -H "cookie: htb_academy_session=$session_key" | jq -r '."data"."name"' |  tr " " "_")
 mapfile -t section_name < <(curl -s "https://academy.hackthebox.com/api/v3/modules/$module_number/sections" -H 'accept: application/json' -H 'referer: https://academy.hackthebox.com/' -H "cookie: htb_academy_session=$session_key" | jq -r '.data[].sections[].title')
 
 full_module_path="$root_obs_dir/$header_prefix$module_name"
@@ -104,7 +113,7 @@ if [[ "$ACTION" == "make" ]]; then
                 echo -e "[*] Module Path Don\`t exists. Creating..."
                 mkdir "$full_module_path"
                 cd "$full_module_path"
-		itrrr=0
+		        itrrr=0
                 for section_file in "${section_name[@]}"; do
         	   ((itter++))
                    md_file_path="$itter. $section_file.md"
